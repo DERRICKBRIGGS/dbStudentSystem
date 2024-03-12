@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fef1d8d355b5468499655ba0f14ad9cb" Name="Diagram1">
+        <EntityTypeShape EntityType="order_meal_systemModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="order_meal_systemModel.t訂餐_口味總表" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="order_meal_systemModel.t訂餐_店家風味表" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="order_meal_systemModel.t訂餐_店家資料表" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="order_meal_systemModel.t訂餐_訂單詳細資訊表" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="order_meal_systemModel.t訂餐_訂單資訊表" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="order_meal_systemModel.t訂餐_評論表" Width="1.5" PointX="5.25" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="order_meal_systemModel.t訂餐_學員口味表" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="order_meal_systemModel.t訂餐_學員最愛商家表" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="order_meal_systemModel.t訂餐_餐點資訊表" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="order_meal_systemModel.t訂餐_營業時間表" Width="1.5" PointX="3" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="order_meal_systemModel.t會員_學生" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="order_meal_systemModel.FK_t訂餐_店家風味表_t訂餐_口味總表1" ManuallyRouted="false" />
+        <AssociationConnector Association="order_meal_systemModel.FK_t訂餐_學員口味表_t訂餐_口味總表1" ManuallyRouted="false" />
+        <AssociationConnector Association="order_meal_systemModel.FK_t訂餐_店家風味表_t訂餐_店家資料表" ManuallyRouted="false" />
+        <AssociationConnector Association="order_meal_systemModel.FK_t訂餐_訂單詳細資訊表_t訂餐_店家資料表" ManuallyRouted="false" />
+        <AssociationConnector Association="order_meal_systemModel.FK_t訂餐_學員最愛商家表_t訂餐_店家資料表" ManuallyRouted="false" />
+        <AssociationConnector Association="order_meal_systemModel.FK_t訂餐_餐點資訊表_t訂餐_店家資料表" ManuallyRouted="false" />
+        <AssociationConnector Association="order_meal_systemModel.FK_t訂餐_營業時間表_t訂餐_店家資料表" ManuallyRouted="false" />
+        <AssociationConnector Association="order_meal_systemModel.FK_t訂餐_訂單詳細資訊表_t訂單資訊表" ManuallyRouted="false" />
+        <AssociationConnector Association="order_meal_systemModel.FK_t訂餐_訂單詳細資訊表_t訂餐_餐點資訊表" ManuallyRouted="false" />
+        <AssociationConnector Association="order_meal_systemModel.FK_t訂單資訊表_t訂餐_學生資訊表" ManuallyRouted="false" />
+        <AssociationConnector Association="order_meal_systemModel.FK_t訂餐_評論表_t訂單資訊表" ManuallyRouted="false" />
+        <AssociationConnector Association="order_meal_systemModel.FK_t訂餐_學員口味表_t訂餐_學生資訊表" ManuallyRouted="false" />
+        <AssociationConnector Association="order_meal_systemModel.FK_t訂餐_學員最愛商家表_t訂餐_學生資訊表" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

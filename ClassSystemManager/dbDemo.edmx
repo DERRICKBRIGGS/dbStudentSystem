@@ -1,0 +1,863 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="order_meal_systemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="t訂餐_口味總表">
+          <Key>
+            <PropertyRef Name="口味ID" />
+          </Key>
+          <Property Name="口味ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="風味名稱" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t訂餐_店家風味表">
+          <Key>
+            <PropertyRef Name="識別碼ID" />
+          </Key>
+          <Property Name="識別碼ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="店家ID" Type="int" Nullable="false" />
+          <Property Name="口味ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t訂餐_店家資料表">
+          <Key>
+            <PropertyRef Name="店家ID" />
+          </Key>
+          <Property Name="店家ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="店家名稱" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="地址" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="電話" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="餐廳介紹" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="餐廳照片" Type="nvarchar" MaxLength="50" />
+          <Property Name="電子信箱" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="密碼" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t訂餐_訂單詳細資訊表">
+          <Key>
+            <PropertyRef Name="訂單詳細表ID" />
+          </Key>
+          <Property Name="訂單詳細表ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="訂單ID" Type="int" Nullable="false" />
+          <Property Name="店家ID" Type="int" Nullable="false" />
+          <Property Name="餐點ID" Type="int" Nullable="false" />
+          <Property Name="餐點數量" Type="int" />
+          <Property Name="金額小記" Type="money" />
+        </EntityType>
+        <EntityType Name="t訂餐_訂單資訊表">
+          <Key>
+            <PropertyRef Name="訂單ID" />
+          </Key>
+          <Property Name="訂單ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="訂單狀態" Type="nchar" MaxLength="15" />
+          <Property Name="學員ID" Type="int" Nullable="false" />
+          <Property Name="訂單時間" Type="nvarchar" MaxLength="50" />
+          <Property Name="支付方式" Type="nchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="t訂餐_評論表">
+          <Key>
+            <PropertyRef Name="評論表ID" />
+          </Key>
+          <Property Name="評論表ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="訂單ID" Type="int" Nullable="false" />
+          <Property Name="評論" Type="nvarchar" MaxLength="50" />
+          <Property Name="滿意度(星數)" Type="char" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="t訂餐_學員口味表">
+          <Key>
+            <PropertyRef Name="識別碼ID" />
+          </Key>
+          <Property Name="識別碼ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="學員ID" Type="int" Nullable="false" />
+          <Property Name="口味ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t訂餐_學員最愛商家表">
+          <Key>
+            <PropertyRef Name="識別碼ID" />
+          </Key>
+          <Property Name="識別碼ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="學員ID" Type="int" Nullable="false" />
+          <Property Name="店家ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t訂餐_餐點資訊表">
+          <Key>
+            <PropertyRef Name="餐點ID" />
+          </Key>
+          <Property Name="餐點ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="店家ID" Type="int" Nullable="false" />
+          <Property Name="餐點名稱" Type="nvarchar" MaxLength="50" />
+          <Property Name="餐點描述" Type="nvarchar" MaxLength="50" />
+          <Property Name="餐點定價" Type="money" />
+          <Property Name="餐點照片" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="t訂餐_營業時間表">
+          <Key>
+            <PropertyRef Name="營業時間表ID" />
+          </Key>
+          <Property Name="營業時間表ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="店家ID" Type="int" Nullable="false" />
+          <Property Name="星期" Type="nvarchar" MaxLength="50" />
+          <Property Name="時段(早/中/晚/全)" Type="nvarchar" MaxLength="50" />
+          <Property Name="開始營業時間" Type="varchar" MaxLength="10" />
+          <Property Name="結束營業時間" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="t會員_學生">
+          <Key>
+            <PropertyRef Name="學生ID" />
+          </Key>
+          <Property Name="學生ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="姓名" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_t訂單資訊表_t訂餐_學生資訊表">
+          <End Role="t會員_學生" Type="Self.t會員_學生" Multiplicity="1" />
+          <End Role="t訂餐_訂單資訊表" Type="Self.t訂餐_訂單資訊表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t會員_學生">
+              <PropertyRef Name="學生ID" />
+            </Principal>
+            <Dependent Role="t訂餐_訂單資訊表">
+              <PropertyRef Name="學員ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_店家風味表_t訂餐_口味總表1">
+          <End Role="t訂餐_口味總表" Type="Self.t訂餐_口味總表" Multiplicity="1" />
+          <End Role="t訂餐_店家風味表" Type="Self.t訂餐_店家風味表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t訂餐_口味總表">
+              <PropertyRef Name="口味ID" />
+            </Principal>
+            <Dependent Role="t訂餐_店家風味表">
+              <PropertyRef Name="口味ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_店家風味表_t訂餐_店家資料表">
+          <End Role="t訂餐_店家資料表" Type="Self.t訂餐_店家資料表" Multiplicity="1" />
+          <End Role="t訂餐_店家風味表" Type="Self.t訂餐_店家風味表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t訂餐_店家資料表">
+              <PropertyRef Name="店家ID" />
+            </Principal>
+            <Dependent Role="t訂餐_店家風味表">
+              <PropertyRef Name="店家ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_訂單詳細資訊表_t訂單資訊表">
+          <End Role="t訂餐_訂單資訊表" Type="Self.t訂餐_訂單資訊表" Multiplicity="1" />
+          <End Role="t訂餐_訂單詳細資訊表" Type="Self.t訂餐_訂單詳細資訊表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t訂餐_訂單資訊表">
+              <PropertyRef Name="訂單ID" />
+            </Principal>
+            <Dependent Role="t訂餐_訂單詳細資訊表">
+              <PropertyRef Name="訂單ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_訂單詳細資訊表_t訂餐_店家資料表">
+          <End Role="t訂餐_店家資料表" Type="Self.t訂餐_店家資料表" Multiplicity="1" />
+          <End Role="t訂餐_訂單詳細資訊表" Type="Self.t訂餐_訂單詳細資訊表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t訂餐_店家資料表">
+              <PropertyRef Name="店家ID" />
+            </Principal>
+            <Dependent Role="t訂餐_訂單詳細資訊表">
+              <PropertyRef Name="店家ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_訂單詳細資訊表_t訂餐_餐點資訊表">
+          <End Role="t訂餐_餐點資訊表" Type="Self.t訂餐_餐點資訊表" Multiplicity="1" />
+          <End Role="t訂餐_訂單詳細資訊表" Type="Self.t訂餐_訂單詳細資訊表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t訂餐_餐點資訊表">
+              <PropertyRef Name="餐點ID" />
+            </Principal>
+            <Dependent Role="t訂餐_訂單詳細資訊表">
+              <PropertyRef Name="餐點ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_評論表_t訂單資訊表">
+          <End Role="t訂餐_訂單資訊表" Type="Self.t訂餐_訂單資訊表" Multiplicity="1" />
+          <End Role="t訂餐_評論表" Type="Self.t訂餐_評論表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t訂餐_訂單資訊表">
+              <PropertyRef Name="訂單ID" />
+            </Principal>
+            <Dependent Role="t訂餐_評論表">
+              <PropertyRef Name="訂單ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_學員口味表_t訂餐_口味總表1">
+          <End Role="t訂餐_口味總表" Type="Self.t訂餐_口味總表" Multiplicity="1" />
+          <End Role="t訂餐_學員口味表" Type="Self.t訂餐_學員口味表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t訂餐_口味總表">
+              <PropertyRef Name="口味ID" />
+            </Principal>
+            <Dependent Role="t訂餐_學員口味表">
+              <PropertyRef Name="口味ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_學員口味表_t訂餐_學生資訊表">
+          <End Role="t會員_學生" Type="Self.t會員_學生" Multiplicity="1" />
+          <End Role="t訂餐_學員口味表" Type="Self.t訂餐_學員口味表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t會員_學生">
+              <PropertyRef Name="學生ID" />
+            </Principal>
+            <Dependent Role="t訂餐_學員口味表">
+              <PropertyRef Name="學員ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_學員最愛商家表_t訂餐_店家資料表">
+          <End Role="t訂餐_店家資料表" Type="Self.t訂餐_店家資料表" Multiplicity="1" />
+          <End Role="t訂餐_學員最愛商家表" Type="Self.t訂餐_學員最愛商家表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t訂餐_店家資料表">
+              <PropertyRef Name="店家ID" />
+            </Principal>
+            <Dependent Role="t訂餐_學員最愛商家表">
+              <PropertyRef Name="店家ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_學員最愛商家表_t訂餐_學生資訊表">
+          <End Role="t會員_學生" Type="Self.t會員_學生" Multiplicity="1" />
+          <End Role="t訂餐_學員最愛商家表" Type="Self.t訂餐_學員最愛商家表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t會員_學生">
+              <PropertyRef Name="學生ID" />
+            </Principal>
+            <Dependent Role="t訂餐_學員最愛商家表">
+              <PropertyRef Name="學員ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_餐點資訊表_t訂餐_店家資料表">
+          <End Role="t訂餐_店家資料表" Type="Self.t訂餐_店家資料表" Multiplicity="1" />
+          <End Role="t訂餐_餐點資訊表" Type="Self.t訂餐_餐點資訊表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t訂餐_店家資料表">
+              <PropertyRef Name="店家ID" />
+            </Principal>
+            <Dependent Role="t訂餐_餐點資訊表">
+              <PropertyRef Name="店家ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_營業時間表_t訂餐_店家資料表">
+          <End Role="t訂餐_店家資料表" Type="Self.t訂餐_店家資料表" Multiplicity="1" />
+          <End Role="t訂餐_營業時間表" Type="Self.t訂餐_營業時間表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t訂餐_店家資料表">
+              <PropertyRef Name="店家ID" />
+            </Principal>
+            <Dependent Role="t訂餐_營業時間表">
+              <PropertyRef Name="店家ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="order_meal_systemModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t訂餐_口味總表" EntityType="Self.t訂餐_口味總表" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t訂餐_店家風味表" EntityType="Self.t訂餐_店家風味表" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t訂餐_店家資料表" EntityType="Self.t訂餐_店家資料表" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t訂餐_訂單詳細資訊表" EntityType="Self.t訂餐_訂單詳細資訊表" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t訂餐_訂單資訊表" EntityType="Self.t訂餐_訂單資訊表" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t訂餐_評論表" EntityType="Self.t訂餐_評論表" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t訂餐_學員口味表" EntityType="Self.t訂餐_學員口味表" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t訂餐_學員最愛商家表" EntityType="Self.t訂餐_學員最愛商家表" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t訂餐_餐點資訊表" EntityType="Self.t訂餐_餐點資訊表" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t訂餐_營業時間表" EntityType="Self.t訂餐_營業時間表" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t會員_學生" EntityType="Self.t會員_學生" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_t訂單資訊表_t訂餐_學生資訊表" Association="Self.FK_t訂單資訊表_t訂餐_學生資訊表">
+            <End Role="t會員_學生" EntitySet="t會員_學生" />
+            <End Role="t訂餐_訂單資訊表" EntitySet="t訂餐_訂單資訊表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_店家風味表_t訂餐_口味總表1" Association="Self.FK_t訂餐_店家風味表_t訂餐_口味總表1">
+            <End Role="t訂餐_口味總表" EntitySet="t訂餐_口味總表" />
+            <End Role="t訂餐_店家風味表" EntitySet="t訂餐_店家風味表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_店家風味表_t訂餐_店家資料表" Association="Self.FK_t訂餐_店家風味表_t訂餐_店家資料表">
+            <End Role="t訂餐_店家資料表" EntitySet="t訂餐_店家資料表" />
+            <End Role="t訂餐_店家風味表" EntitySet="t訂餐_店家風味表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_訂單詳細資訊表_t訂單資訊表" Association="Self.FK_t訂餐_訂單詳細資訊表_t訂單資訊表">
+            <End Role="t訂餐_訂單資訊表" EntitySet="t訂餐_訂單資訊表" />
+            <End Role="t訂餐_訂單詳細資訊表" EntitySet="t訂餐_訂單詳細資訊表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_訂單詳細資訊表_t訂餐_店家資料表" Association="Self.FK_t訂餐_訂單詳細資訊表_t訂餐_店家資料表">
+            <End Role="t訂餐_店家資料表" EntitySet="t訂餐_店家資料表" />
+            <End Role="t訂餐_訂單詳細資訊表" EntitySet="t訂餐_訂單詳細資訊表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_訂單詳細資訊表_t訂餐_餐點資訊表" Association="Self.FK_t訂餐_訂單詳細資訊表_t訂餐_餐點資訊表">
+            <End Role="t訂餐_餐點資訊表" EntitySet="t訂餐_餐點資訊表" />
+            <End Role="t訂餐_訂單詳細資訊表" EntitySet="t訂餐_訂單詳細資訊表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_評論表_t訂單資訊表" Association="Self.FK_t訂餐_評論表_t訂單資訊表">
+            <End Role="t訂餐_訂單資訊表" EntitySet="t訂餐_訂單資訊表" />
+            <End Role="t訂餐_評論表" EntitySet="t訂餐_評論表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_學員口味表_t訂餐_口味總表1" Association="Self.FK_t訂餐_學員口味表_t訂餐_口味總表1">
+            <End Role="t訂餐_口味總表" EntitySet="t訂餐_口味總表" />
+            <End Role="t訂餐_學員口味表" EntitySet="t訂餐_學員口味表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_學員口味表_t訂餐_學生資訊表" Association="Self.FK_t訂餐_學員口味表_t訂餐_學生資訊表">
+            <End Role="t會員_學生" EntitySet="t會員_學生" />
+            <End Role="t訂餐_學員口味表" EntitySet="t訂餐_學員口味表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_學員最愛商家表_t訂餐_店家資料表" Association="Self.FK_t訂餐_學員最愛商家表_t訂餐_店家資料表">
+            <End Role="t訂餐_店家資料表" EntitySet="t訂餐_店家資料表" />
+            <End Role="t訂餐_學員最愛商家表" EntitySet="t訂餐_學員最愛商家表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_學員最愛商家表_t訂餐_學生資訊表" Association="Self.FK_t訂餐_學員最愛商家表_t訂餐_學生資訊表">
+            <End Role="t會員_學生" EntitySet="t會員_學生" />
+            <End Role="t訂餐_學員最愛商家表" EntitySet="t訂餐_學員最愛商家表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_餐點資訊表_t訂餐_店家資料表" Association="Self.FK_t訂餐_餐點資訊表_t訂餐_店家資料表">
+            <End Role="t訂餐_店家資料表" EntitySet="t訂餐_店家資料表" />
+            <End Role="t訂餐_餐點資訊表" EntitySet="t訂餐_餐點資訊表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_營業時間表_t訂餐_店家資料表" Association="Self.FK_t訂餐_營業時間表_t訂餐_店家資料表">
+            <End Role="t訂餐_店家資料表" EntitySet="t訂餐_店家資料表" />
+            <End Role="t訂餐_營業時間表" EntitySet="t訂餐_營業時間表" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="order_meal_systemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="t訂餐_口味總表">
+          <Key>
+            <PropertyRef Name="口味ID" />
+          </Key>
+          <Property Name="口味ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="風味名稱" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="t訂餐_店家風味表" Relationship="Self.FK_t訂餐_店家風味表_t訂餐_口味總表1" FromRole="t訂餐_口味總表" ToRole="t訂餐_店家風味表" />
+          <NavigationProperty Name="t訂餐_學員口味表" Relationship="Self.FK_t訂餐_學員口味表_t訂餐_口味總表1" FromRole="t訂餐_口味總表" ToRole="t訂餐_學員口味表" />
+        </EntityType>
+        <EntityType Name="t訂餐_店家風味表">
+          <Key>
+            <PropertyRef Name="識別碼ID" />
+          </Key>
+          <Property Name="識別碼ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="店家ID" Type="Int32" Nullable="false" />
+          <Property Name="口味ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="t訂餐_口味總表" Relationship="Self.FK_t訂餐_店家風味表_t訂餐_口味總表1" FromRole="t訂餐_店家風味表" ToRole="t訂餐_口味總表" />
+          <NavigationProperty Name="t訂餐_店家資料表" Relationship="Self.FK_t訂餐_店家風味表_t訂餐_店家資料表" FromRole="t訂餐_店家風味表" ToRole="t訂餐_店家資料表" />
+        </EntityType>
+        <EntityType Name="t訂餐_店家資料表">
+          <Key>
+            <PropertyRef Name="店家ID" />
+          </Key>
+          <Property Name="店家ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="店家名稱" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="地址" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="電話" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="餐廳介紹" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="餐廳照片" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="電子信箱" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="密碼" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="t訂餐_店家風味表" Relationship="Self.FK_t訂餐_店家風味表_t訂餐_店家資料表" FromRole="t訂餐_店家資料表" ToRole="t訂餐_店家風味表" />
+          <NavigationProperty Name="t訂餐_訂單詳細資訊表" Relationship="Self.FK_t訂餐_訂單詳細資訊表_t訂餐_店家資料表" FromRole="t訂餐_店家資料表" ToRole="t訂餐_訂單詳細資訊表" />
+          <NavigationProperty Name="t訂餐_學員最愛商家表" Relationship="Self.FK_t訂餐_學員最愛商家表_t訂餐_店家資料表" FromRole="t訂餐_店家資料表" ToRole="t訂餐_學員最愛商家表" />
+          <NavigationProperty Name="t訂餐_餐點資訊表" Relationship="Self.FK_t訂餐_餐點資訊表_t訂餐_店家資料表" FromRole="t訂餐_店家資料表" ToRole="t訂餐_餐點資訊表" />
+          <NavigationProperty Name="t訂餐_營業時間表" Relationship="Self.FK_t訂餐_營業時間表_t訂餐_店家資料表" FromRole="t訂餐_店家資料表" ToRole="t訂餐_營業時間表" />
+        </EntityType>
+        <EntityType Name="t訂餐_訂單詳細資訊表">
+          <Key>
+            <PropertyRef Name="訂單詳細表ID" />
+          </Key>
+          <Property Name="訂單詳細表ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="訂單ID" Type="Int32" Nullable="false" />
+          <Property Name="店家ID" Type="Int32" Nullable="false" />
+          <Property Name="餐點ID" Type="Int32" Nullable="false" />
+          <Property Name="餐點數量" Type="Int32" />
+          <Property Name="金額小記" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="t訂餐_店家資料表" Relationship="Self.FK_t訂餐_訂單詳細資訊表_t訂餐_店家資料表" FromRole="t訂餐_訂單詳細資訊表" ToRole="t訂餐_店家資料表" />
+          <NavigationProperty Name="t訂餐_訂單資訊表" Relationship="Self.FK_t訂餐_訂單詳細資訊表_t訂單資訊表" FromRole="t訂餐_訂單詳細資訊表" ToRole="t訂餐_訂單資訊表" />
+          <NavigationProperty Name="t訂餐_餐點資訊表" Relationship="Self.FK_t訂餐_訂單詳細資訊表_t訂餐_餐點資訊表" FromRole="t訂餐_訂單詳細資訊表" ToRole="t訂餐_餐點資訊表" />
+        </EntityType>
+        <EntityType Name="t訂餐_訂單資訊表">
+          <Key>
+            <PropertyRef Name="訂單ID" />
+          </Key>
+          <Property Name="訂單ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="訂單狀態" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="學員ID" Type="Int32" Nullable="false" />
+          <Property Name="訂單時間" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="支付方式" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="t訂餐_訂單詳細資訊表" Relationship="Self.FK_t訂餐_訂單詳細資訊表_t訂單資訊表" FromRole="t訂餐_訂單資訊表" ToRole="t訂餐_訂單詳細資訊表" />
+          <NavigationProperty Name="t會員_學生" Relationship="Self.FK_t訂單資訊表_t訂餐_學生資訊表" FromRole="t訂餐_訂單資訊表" ToRole="t會員_學生" />
+          <NavigationProperty Name="t訂餐_評論表" Relationship="Self.FK_t訂餐_評論表_t訂單資訊表" FromRole="t訂餐_訂單資訊表" ToRole="t訂餐_評論表" />
+        </EntityType>
+        <EntityType Name="t訂餐_評論表">
+          <Key>
+            <PropertyRef Name="評論表ID" />
+          </Key>
+          <Property Name="評論表ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="訂單ID" Type="Int32" Nullable="false" />
+          <Property Name="評論" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="滿意度_星數_" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="t訂餐_訂單資訊表" Relationship="Self.FK_t訂餐_評論表_t訂單資訊表" FromRole="t訂餐_評論表" ToRole="t訂餐_訂單資訊表" />
+        </EntityType>
+        <EntityType Name="t訂餐_學員口味表">
+          <Key>
+            <PropertyRef Name="識別碼ID" />
+          </Key>
+          <Property Name="識別碼ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="學員ID" Type="Int32" Nullable="false" />
+          <Property Name="口味ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="t訂餐_口味總表" Relationship="Self.FK_t訂餐_學員口味表_t訂餐_口味總表1" FromRole="t訂餐_學員口味表" ToRole="t訂餐_口味總表" />
+          <NavigationProperty Name="t會員_學生" Relationship="Self.FK_t訂餐_學員口味表_t訂餐_學生資訊表" FromRole="t訂餐_學員口味表" ToRole="t會員_學生" />
+        </EntityType>
+        <EntityType Name="t訂餐_學員最愛商家表">
+          <Key>
+            <PropertyRef Name="識別碼ID" />
+          </Key>
+          <Property Name="識別碼ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="學員ID" Type="Int32" Nullable="false" />
+          <Property Name="店家ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="t訂餐_店家資料表" Relationship="Self.FK_t訂餐_學員最愛商家表_t訂餐_店家資料表" FromRole="t訂餐_學員最愛商家表" ToRole="t訂餐_店家資料表" />
+          <NavigationProperty Name="t會員_學生" Relationship="Self.FK_t訂餐_學員最愛商家表_t訂餐_學生資訊表" FromRole="t訂餐_學員最愛商家表" ToRole="t會員_學生" />
+        </EntityType>
+        <EntityType Name="t訂餐_餐點資訊表">
+          <Key>
+            <PropertyRef Name="餐點ID" />
+          </Key>
+          <Property Name="餐點ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="店家ID" Type="Int32" Nullable="false" />
+          <Property Name="餐點名稱" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="餐點描述" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="餐點定價" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="餐點照片" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="t訂餐_店家資料表" Relationship="Self.FK_t訂餐_餐點資訊表_t訂餐_店家資料表" FromRole="t訂餐_餐點資訊表" ToRole="t訂餐_店家資料表" />
+          <NavigationProperty Name="t訂餐_訂單詳細資訊表" Relationship="Self.FK_t訂餐_訂單詳細資訊表_t訂餐_餐點資訊表" FromRole="t訂餐_餐點資訊表" ToRole="t訂餐_訂單詳細資訊表" />
+        </EntityType>
+        <EntityType Name="t訂餐_營業時間表">
+          <Key>
+            <PropertyRef Name="營業時間表ID" />
+          </Key>
+          <Property Name="營業時間表ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="店家ID" Type="Int32" Nullable="false" />
+          <Property Name="星期" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="時段_早_中_晚_全_" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="開始營業時間" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="結束營業時間" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="t訂餐_店家資料表" Relationship="Self.FK_t訂餐_營業時間表_t訂餐_店家資料表" FromRole="t訂餐_營業時間表" ToRole="t訂餐_店家資料表" />
+        </EntityType>
+        <EntityType Name="t會員_學生">
+          <Key>
+            <PropertyRef Name="學生ID" />
+          </Key>
+          <Property Name="學生ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="姓名" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="t訂餐_訂單資訊表" Relationship="Self.FK_t訂單資訊表_t訂餐_學生資訊表" FromRole="t會員_學生" ToRole="t訂餐_訂單資訊表" />
+          <NavigationProperty Name="t訂餐_學員口味表" Relationship="Self.FK_t訂餐_學員口味表_t訂餐_學生資訊表" FromRole="t會員_學生" ToRole="t訂餐_學員口味表" />
+          <NavigationProperty Name="t訂餐_學員最愛商家表" Relationship="Self.FK_t訂餐_學員最愛商家表_t訂餐_學生資訊表" FromRole="t會員_學生" ToRole="t訂餐_學員最愛商家表" />
+        </EntityType>
+        <Association Name="FK_t訂餐_店家風味表_t訂餐_口味總表1">
+          <End Role="t訂餐_口味總表" Type="Self.t訂餐_口味總表" Multiplicity="1" />
+          <End Role="t訂餐_店家風味表" Type="Self.t訂餐_店家風味表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t訂餐_口味總表">
+              <PropertyRef Name="口味ID" />
+            </Principal>
+            <Dependent Role="t訂餐_店家風味表">
+              <PropertyRef Name="口味ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_學員口味表_t訂餐_口味總表1">
+          <End Role="t訂餐_口味總表" Type="Self.t訂餐_口味總表" Multiplicity="1" />
+          <End Role="t訂餐_學員口味表" Type="Self.t訂餐_學員口味表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t訂餐_口味總表">
+              <PropertyRef Name="口味ID" />
+            </Principal>
+            <Dependent Role="t訂餐_學員口味表">
+              <PropertyRef Name="口味ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_店家風味表_t訂餐_店家資料表">
+          <End Role="t訂餐_店家資料表" Type="Self.t訂餐_店家資料表" Multiplicity="1" />
+          <End Role="t訂餐_店家風味表" Type="Self.t訂餐_店家風味表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t訂餐_店家資料表">
+              <PropertyRef Name="店家ID" />
+            </Principal>
+            <Dependent Role="t訂餐_店家風味表">
+              <PropertyRef Name="店家ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_訂單詳細資訊表_t訂餐_店家資料表">
+          <End Role="t訂餐_店家資料表" Type="Self.t訂餐_店家資料表" Multiplicity="1" />
+          <End Role="t訂餐_訂單詳細資訊表" Type="Self.t訂餐_訂單詳細資訊表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t訂餐_店家資料表">
+              <PropertyRef Name="店家ID" />
+            </Principal>
+            <Dependent Role="t訂餐_訂單詳細資訊表">
+              <PropertyRef Name="店家ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_學員最愛商家表_t訂餐_店家資料表">
+          <End Role="t訂餐_店家資料表" Type="Self.t訂餐_店家資料表" Multiplicity="1" />
+          <End Role="t訂餐_學員最愛商家表" Type="Self.t訂餐_學員最愛商家表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t訂餐_店家資料表">
+              <PropertyRef Name="店家ID" />
+            </Principal>
+            <Dependent Role="t訂餐_學員最愛商家表">
+              <PropertyRef Name="店家ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_餐點資訊表_t訂餐_店家資料表">
+          <End Role="t訂餐_店家資料表" Type="Self.t訂餐_店家資料表" Multiplicity="1" />
+          <End Role="t訂餐_餐點資訊表" Type="Self.t訂餐_餐點資訊表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t訂餐_店家資料表">
+              <PropertyRef Name="店家ID" />
+            </Principal>
+            <Dependent Role="t訂餐_餐點資訊表">
+              <PropertyRef Name="店家ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_營業時間表_t訂餐_店家資料表">
+          <End Role="t訂餐_店家資料表" Type="Self.t訂餐_店家資料表" Multiplicity="1" />
+          <End Role="t訂餐_營業時間表" Type="Self.t訂餐_營業時間表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t訂餐_店家資料表">
+              <PropertyRef Name="店家ID" />
+            </Principal>
+            <Dependent Role="t訂餐_營業時間表">
+              <PropertyRef Name="店家ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_訂單詳細資訊表_t訂單資訊表">
+          <End Role="t訂餐_訂單資訊表" Type="Self.t訂餐_訂單資訊表" Multiplicity="1" />
+          <End Role="t訂餐_訂單詳細資訊表" Type="Self.t訂餐_訂單詳細資訊表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t訂餐_訂單資訊表">
+              <PropertyRef Name="訂單ID" />
+            </Principal>
+            <Dependent Role="t訂餐_訂單詳細資訊表">
+              <PropertyRef Name="訂單ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_訂單詳細資訊表_t訂餐_餐點資訊表">
+          <End Role="t訂餐_餐點資訊表" Type="Self.t訂餐_餐點資訊表" Multiplicity="1" />
+          <End Role="t訂餐_訂單詳細資訊表" Type="Self.t訂餐_訂單詳細資訊表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t訂餐_餐點資訊表">
+              <PropertyRef Name="餐點ID" />
+            </Principal>
+            <Dependent Role="t訂餐_訂單詳細資訊表">
+              <PropertyRef Name="餐點ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂單資訊表_t訂餐_學生資訊表">
+          <End Role="t會員_學生" Type="Self.t會員_學生" Multiplicity="1" />
+          <End Role="t訂餐_訂單資訊表" Type="Self.t訂餐_訂單資訊表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t會員_學生">
+              <PropertyRef Name="學生ID" />
+            </Principal>
+            <Dependent Role="t訂餐_訂單資訊表">
+              <PropertyRef Name="學員ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_評論表_t訂單資訊表">
+          <End Role="t訂餐_訂單資訊表" Type="Self.t訂餐_訂單資訊表" Multiplicity="1" />
+          <End Role="t訂餐_評論表" Type="Self.t訂餐_評論表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t訂餐_訂單資訊表">
+              <PropertyRef Name="訂單ID" />
+            </Principal>
+            <Dependent Role="t訂餐_評論表">
+              <PropertyRef Name="訂單ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_學員口味表_t訂餐_學生資訊表">
+          <End Role="t會員_學生" Type="Self.t會員_學生" Multiplicity="1" />
+          <End Role="t訂餐_學員口味表" Type="Self.t訂餐_學員口味表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t會員_學生">
+              <PropertyRef Name="學生ID" />
+            </Principal>
+            <Dependent Role="t訂餐_學員口味表">
+              <PropertyRef Name="學員ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t訂餐_學員最愛商家表_t訂餐_學生資訊表">
+          <End Role="t會員_學生" Type="Self.t會員_學生" Multiplicity="1" />
+          <End Role="t訂餐_學員最愛商家表" Type="Self.t訂餐_學員最愛商家表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t會員_學生">
+              <PropertyRef Name="學生ID" />
+            </Principal>
+            <Dependent Role="t訂餐_學員最愛商家表">
+              <PropertyRef Name="學員ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="order_meal_systemEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="t訂餐_口味總表" EntityType="Self.t訂餐_口味總表" />
+          <EntitySet Name="t訂餐_店家風味表" EntityType="Self.t訂餐_店家風味表" />
+          <EntitySet Name="t訂餐_店家資料表" EntityType="Self.t訂餐_店家資料表" />
+          <EntitySet Name="t訂餐_訂單詳細資訊表" EntityType="Self.t訂餐_訂單詳細資訊表" />
+          <EntitySet Name="t訂餐_訂單資訊表" EntityType="Self.t訂餐_訂單資訊表" />
+          <EntitySet Name="t訂餐_評論表" EntityType="Self.t訂餐_評論表" />
+          <EntitySet Name="t訂餐_學員口味表" EntityType="Self.t訂餐_學員口味表" />
+          <EntitySet Name="t訂餐_學員最愛商家表" EntityType="Self.t訂餐_學員最愛商家表" />
+          <EntitySet Name="t訂餐_餐點資訊表" EntityType="Self.t訂餐_餐點資訊表" />
+          <EntitySet Name="t訂餐_營業時間表" EntityType="Self.t訂餐_營業時間表" />
+          <EntitySet Name="t會員_學生" EntityType="Self.t會員_學生" />
+          <AssociationSet Name="FK_t訂餐_店家風味表_t訂餐_口味總表1" Association="Self.FK_t訂餐_店家風味表_t訂餐_口味總表1">
+            <End Role="t訂餐_口味總表" EntitySet="t訂餐_口味總表" />
+            <End Role="t訂餐_店家風味表" EntitySet="t訂餐_店家風味表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_學員口味表_t訂餐_口味總表1" Association="Self.FK_t訂餐_學員口味表_t訂餐_口味總表1">
+            <End Role="t訂餐_口味總表" EntitySet="t訂餐_口味總表" />
+            <End Role="t訂餐_學員口味表" EntitySet="t訂餐_學員口味表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_店家風味表_t訂餐_店家資料表" Association="Self.FK_t訂餐_店家風味表_t訂餐_店家資料表">
+            <End Role="t訂餐_店家資料表" EntitySet="t訂餐_店家資料表" />
+            <End Role="t訂餐_店家風味表" EntitySet="t訂餐_店家風味表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_訂單詳細資訊表_t訂餐_店家資料表" Association="Self.FK_t訂餐_訂單詳細資訊表_t訂餐_店家資料表">
+            <End Role="t訂餐_店家資料表" EntitySet="t訂餐_店家資料表" />
+            <End Role="t訂餐_訂單詳細資訊表" EntitySet="t訂餐_訂單詳細資訊表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_學員最愛商家表_t訂餐_店家資料表" Association="Self.FK_t訂餐_學員最愛商家表_t訂餐_店家資料表">
+            <End Role="t訂餐_店家資料表" EntitySet="t訂餐_店家資料表" />
+            <End Role="t訂餐_學員最愛商家表" EntitySet="t訂餐_學員最愛商家表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_餐點資訊表_t訂餐_店家資料表" Association="Self.FK_t訂餐_餐點資訊表_t訂餐_店家資料表">
+            <End Role="t訂餐_店家資料表" EntitySet="t訂餐_店家資料表" />
+            <End Role="t訂餐_餐點資訊表" EntitySet="t訂餐_餐點資訊表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_營業時間表_t訂餐_店家資料表" Association="Self.FK_t訂餐_營業時間表_t訂餐_店家資料表">
+            <End Role="t訂餐_店家資料表" EntitySet="t訂餐_店家資料表" />
+            <End Role="t訂餐_營業時間表" EntitySet="t訂餐_營業時間表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_訂單詳細資訊表_t訂單資訊表" Association="Self.FK_t訂餐_訂單詳細資訊表_t訂單資訊表">
+            <End Role="t訂餐_訂單資訊表" EntitySet="t訂餐_訂單資訊表" />
+            <End Role="t訂餐_訂單詳細資訊表" EntitySet="t訂餐_訂單詳細資訊表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_訂單詳細資訊表_t訂餐_餐點資訊表" Association="Self.FK_t訂餐_訂單詳細資訊表_t訂餐_餐點資訊表">
+            <End Role="t訂餐_餐點資訊表" EntitySet="t訂餐_餐點資訊表" />
+            <End Role="t訂餐_訂單詳細資訊表" EntitySet="t訂餐_訂單詳細資訊表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂單資訊表_t訂餐_學生資訊表" Association="Self.FK_t訂單資訊表_t訂餐_學生資訊表">
+            <End Role="t會員_學生" EntitySet="t會員_學生" />
+            <End Role="t訂餐_訂單資訊表" EntitySet="t訂餐_訂單資訊表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_評論表_t訂單資訊表" Association="Self.FK_t訂餐_評論表_t訂單資訊表">
+            <End Role="t訂餐_訂單資訊表" EntitySet="t訂餐_訂單資訊表" />
+            <End Role="t訂餐_評論表" EntitySet="t訂餐_評論表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_學員口味表_t訂餐_學生資訊表" Association="Self.FK_t訂餐_學員口味表_t訂餐_學生資訊表">
+            <End Role="t會員_學生" EntitySet="t會員_學生" />
+            <End Role="t訂餐_學員口味表" EntitySet="t訂餐_學員口味表" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t訂餐_學員最愛商家表_t訂餐_學生資訊表" Association="Self.FK_t訂餐_學員最愛商家表_t訂餐_學生資訊表">
+            <End Role="t會員_學生" EntitySet="t會員_學生" />
+            <End Role="t訂餐_學員最愛商家表" EntitySet="t訂餐_學員最愛商家表" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="order_meal_systemModelStoreContainer" CdmEntityContainer="order_meal_systemEntities1">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="order_meal_systemModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t訂餐_口味總表">
+            <EntityTypeMapping TypeName="order_meal_systemModel.t訂餐_口味總表">
+              <MappingFragment StoreEntitySet="t訂餐_口味總表">
+                <ScalarProperty Name="口味ID" ColumnName="口味ID" />
+                <ScalarProperty Name="風味名稱" ColumnName="風味名稱" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t訂餐_店家風味表">
+            <EntityTypeMapping TypeName="order_meal_systemModel.t訂餐_店家風味表">
+              <MappingFragment StoreEntitySet="t訂餐_店家風味表">
+                <ScalarProperty Name="識別碼ID" ColumnName="識別碼ID" />
+                <ScalarProperty Name="店家ID" ColumnName="店家ID" />
+                <ScalarProperty Name="口味ID" ColumnName="口味ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t訂餐_店家資料表">
+            <EntityTypeMapping TypeName="order_meal_systemModel.t訂餐_店家資料表">
+              <MappingFragment StoreEntitySet="t訂餐_店家資料表">
+                <ScalarProperty Name="店家ID" ColumnName="店家ID" />
+                <ScalarProperty Name="店家名稱" ColumnName="店家名稱" />
+                <ScalarProperty Name="地址" ColumnName="地址" />
+                <ScalarProperty Name="電話" ColumnName="電話" />
+                <ScalarProperty Name="餐廳介紹" ColumnName="餐廳介紹" />
+                <ScalarProperty Name="餐廳照片" ColumnName="餐廳照片" />
+                <ScalarProperty Name="電子信箱" ColumnName="電子信箱" />
+                <ScalarProperty Name="密碼" ColumnName="密碼" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t訂餐_訂單詳細資訊表">
+            <EntityTypeMapping TypeName="order_meal_systemModel.t訂餐_訂單詳細資訊表">
+              <MappingFragment StoreEntitySet="t訂餐_訂單詳細資訊表">
+                <ScalarProperty Name="訂單詳細表ID" ColumnName="訂單詳細表ID" />
+                <ScalarProperty Name="訂單ID" ColumnName="訂單ID" />
+                <ScalarProperty Name="店家ID" ColumnName="店家ID" />
+                <ScalarProperty Name="餐點ID" ColumnName="餐點ID" />
+                <ScalarProperty Name="餐點數量" ColumnName="餐點數量" />
+                <ScalarProperty Name="金額小記" ColumnName="金額小記" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t訂餐_訂單資訊表">
+            <EntityTypeMapping TypeName="order_meal_systemModel.t訂餐_訂單資訊表">
+              <MappingFragment StoreEntitySet="t訂餐_訂單資訊表">
+                <ScalarProperty Name="訂單ID" ColumnName="訂單ID" />
+                <ScalarProperty Name="訂單狀態" ColumnName="訂單狀態" />
+                <ScalarProperty Name="學員ID" ColumnName="學員ID" />
+                <ScalarProperty Name="訂單時間" ColumnName="訂單時間" />
+                <ScalarProperty Name="支付方式" ColumnName="支付方式" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t訂餐_評論表">
+            <EntityTypeMapping TypeName="order_meal_systemModel.t訂餐_評論表">
+              <MappingFragment StoreEntitySet="t訂餐_評論表">
+                <ScalarProperty Name="評論表ID" ColumnName="評論表ID" />
+                <ScalarProperty Name="訂單ID" ColumnName="訂單ID" />
+                <ScalarProperty Name="評論" ColumnName="評論" />
+                <ScalarProperty Name="滿意度_星數_" ColumnName="滿意度(星數)" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t訂餐_學員口味表">
+            <EntityTypeMapping TypeName="order_meal_systemModel.t訂餐_學員口味表">
+              <MappingFragment StoreEntitySet="t訂餐_學員口味表">
+                <ScalarProperty Name="識別碼ID" ColumnName="識別碼ID" />
+                <ScalarProperty Name="學員ID" ColumnName="學員ID" />
+                <ScalarProperty Name="口味ID" ColumnName="口味ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t訂餐_學員最愛商家表">
+            <EntityTypeMapping TypeName="order_meal_systemModel.t訂餐_學員最愛商家表">
+              <MappingFragment StoreEntitySet="t訂餐_學員最愛商家表">
+                <ScalarProperty Name="識別碼ID" ColumnName="識別碼ID" />
+                <ScalarProperty Name="學員ID" ColumnName="學員ID" />
+                <ScalarProperty Name="店家ID" ColumnName="店家ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t訂餐_餐點資訊表">
+            <EntityTypeMapping TypeName="order_meal_systemModel.t訂餐_餐點資訊表">
+              <MappingFragment StoreEntitySet="t訂餐_餐點資訊表">
+                <ScalarProperty Name="餐點ID" ColumnName="餐點ID" />
+                <ScalarProperty Name="店家ID" ColumnName="店家ID" />
+                <ScalarProperty Name="餐點名稱" ColumnName="餐點名稱" />
+                <ScalarProperty Name="餐點描述" ColumnName="餐點描述" />
+                <ScalarProperty Name="餐點定價" ColumnName="餐點定價" />
+                <ScalarProperty Name="餐點照片" ColumnName="餐點照片" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t訂餐_營業時間表">
+            <EntityTypeMapping TypeName="order_meal_systemModel.t訂餐_營業時間表">
+              <MappingFragment StoreEntitySet="t訂餐_營業時間表">
+                <ScalarProperty Name="營業時間表ID" ColumnName="營業時間表ID" />
+                <ScalarProperty Name="店家ID" ColumnName="店家ID" />
+                <ScalarProperty Name="星期" ColumnName="星期" />
+                <ScalarProperty Name="時段_早_中_晚_全_" ColumnName="時段(早/中/晚/全)" />
+                <ScalarProperty Name="開始營業時間" ColumnName="開始營業時間" />
+                <ScalarProperty Name="結束營業時間" ColumnName="結束營業時間" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t會員_學生">
+            <EntityTypeMapping TypeName="order_meal_systemModel.t會員_學生">
+              <MappingFragment StoreEntitySet="t會員_學生">
+                <ScalarProperty Name="學生ID" ColumnName="學生ID" />
+                <ScalarProperty Name="姓名" ColumnName="姓名" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
